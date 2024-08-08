@@ -18,6 +18,8 @@
 DHT dht(DHTPIN, DHTTYPE);
 LiquidCrystal_I2C lcd(0x27, 16, 2);  // 0x27 or 0x3F 
 
+#define LED_R 16
+#define LED_L 17
 #define Buzzer_Pin 18
 #define LDR_Pin 34
 int LDR_input = 0, lcd_mode = 0;
@@ -136,6 +138,8 @@ void setup(void) {
   idektep.begin();
   pinMode(TrigPin, OUTPUT);
   pinMode(EchoPin, INPUT);
+  pinMode(LED_R, OUTPUT);
+  pinMode(LED_L, OUTPUT);
   idektep.setPWMFreq(60);
   initWiFi();
   Serial.print("RRSI: ");
