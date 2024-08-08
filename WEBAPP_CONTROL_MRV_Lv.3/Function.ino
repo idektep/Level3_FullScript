@@ -28,6 +28,8 @@ void processAGVMovement(String inputValue) {
   //Serial.printf("Got value as %s %d\n", inputValue.c_str(), inputValue.toInt());
   switch (inputValue.toInt()) {
     case UP:
+      digitalWrite(LED_R, HIGH);
+      digitalWrite(LED_L, HIGH);
       rotateMotor(FRONT_LEFT_MOTOR, FORWARD);
       rotateMotor(FRONT_RIGHT_MOTOR, FORWARD);
       rotateMotor(BACK_LEFT_MOTOR, FORWARD);
@@ -64,12 +66,16 @@ void processAGVMovement(String inputValue) {
       rotateMotor(BACK_RIGHT_MOTOR, BACKWARD);
       break;
     case TURN_LEFT:
+      digitalWrite(LED_R, LOW);
+      digitalWrite(LED_L, HIGH);
       rotateMotor(FRONT_LEFT_MOTOR, BACKWARD);
       rotateMotor(FRONT_RIGHT_MOTOR, FORWARD);
       rotateMotor(BACK_LEFT_MOTOR, BACKWARD);
       rotateMotor(BACK_RIGHT_MOTOR, FORWARD);
       break;
     case TURN_RIGHT:
+      digitalWrite(LED_R, HIGH);
+      digitalWrite(LED_L, LOW);
       rotateMotor(FRONT_LEFT_MOTOR, FORWARD);
       rotateMotor(FRONT_RIGHT_MOTOR, BACKWARD);
       rotateMotor(BACK_LEFT_MOTOR, FORWARD);
@@ -82,12 +88,16 @@ void processAGVMovement(String inputValue) {
       beep(0);
       break;
     case STOP:
+      digitalWrite(LED_R, LOW);
+      digitalWrite(LED_L, LOW);
       rotateMotor(FRONT_LEFT_MOTOR, STOP);
       rotateMotor(FRONT_RIGHT_MOTOR, STOP);
       rotateMotor(BACK_LEFT_MOTOR, STOP);
       rotateMotor(BACK_RIGHT_MOTOR, STOP);
       break;
     default:
+      digitalWrite(LED_R, LOW);
+      digitalWrite(LED_L, LOW);
       rotateMotor(FRONT_LEFT_MOTOR, STOP);
       rotateMotor(FRONT_RIGHT_MOTOR, STOP);
       rotateMotor(BACK_LEFT_MOTOR, STOP);
